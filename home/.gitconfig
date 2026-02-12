@@ -1,0 +1,6 @@
+[user]
+    name = Andrew Sparkes
+    email = verdande2@gmail.com
+
+[core]
+    excludesfile = ~/.gitignore_global

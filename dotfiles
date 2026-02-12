@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+source "$DOTFILES_DIR/lib/core.sh"
+
+COMMAND="${1:-help}"
+shift || true
+
+case "$COMMAND" in
+    install)
+        source "$DOTFILES_DIR/lib/install.sh"
+        install "$@"
+        ;;
+    update)
+        source "$DOTFILES_DIR/lib/update.sh"
+        update "$@"
+        ;;
+    doctor)
+        source "$DOTFILES_DIR/lib/doctor.sh"
+        doctor "$@"
+        ;;
+    uninstall)
+        source "$DOTFILES_DIR/lib/uninstall.sh"
+        uninstall "$@"
+        ;;
+    help|*)
+        echo "Usage:"
+        echo "  ./dotfiles install [options]"
+        echo "  ./dotfiles update [options]"
+        echo "  ./dotfiles uninstall"
+        echo "  ./dotfiles doctor"
+        exit 0
+        ;;
+esac
